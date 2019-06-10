@@ -18,6 +18,8 @@ class TrainerContentViewController: UIViewController {
     // MARK: - Properties
     
     var image: UIImage?
+    var index = 0
+    var delegate: ChooseTrainerDelegate!
 
     // MARK: - UIViewController Lifecycle Methods
     
@@ -29,7 +31,7 @@ class TrainerContentViewController: UIViewController {
     // MARK: - Custom Action Methods
     
     @IBAction func trainerSelectAction(_ sender: Any) {
-        
+        delegate.choseTrainer(index)
     }
 
 }
