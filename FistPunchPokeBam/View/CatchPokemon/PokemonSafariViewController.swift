@@ -8,13 +8,6 @@
 
 import UIKit
 
-class PokemonCatchViewModel {
-    var trainer: Trainer
-    init(_ trainer: Trainer) {
-        self.trainer = trainer
-    }
-}
-
 /*
  1. Demonstrate CollectionView
  2. Hook up VM to View
@@ -60,7 +53,16 @@ class PokemonSafariViewController: UIViewController {
     }
     
     func setupWithTrainer(_ trainer: Trainer) {
-        viewModel = PokemonCatchViewModel(trainer)
+        let updateUI: ()->Void = {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+        viewModel = PokemonCatchViewModel(trainer, updateUI)
+        downloadPokemon()
+    }
+    func downloadPokemon() {
+        viewModel.downloadRandomPokemon(count: 12)
     }
 }
 
@@ -72,12 +74,22 @@ extension PokemonSafariViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return NUMBER_OF_CHANS // return viewModel.count
+        return viewModel.count // NUMBER_OF_CHANS
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: COLLECTION_CELL_ID, for: indexPath) as! PokemonCollectionViewCell
-        cell.imageView.image = UIImage(named: "chan")
+        // what is the information I need to display?
+    
+        if let imageData = viewModel.image(at: indexPath.row) {
+            cell.imageView.image = UIImage(data: imageData)
+        }
+        else {
+            // placeholder if no data exists
+            cell.imageView.image = UIImage(named: "chan")
+        }
+ 
+        //cell.imageView.image = UIImage(named: "chan")
         return cell
     }
 

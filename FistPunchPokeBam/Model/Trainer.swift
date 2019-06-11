@@ -8,7 +8,6 @@
 
 import Foundation
 
-class Pokemon { }
 class Badge { }
 
 class Trainer {

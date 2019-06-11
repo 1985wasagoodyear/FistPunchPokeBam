@@ -67,7 +67,6 @@ class TrainerPageViewController: UIPageViewController {
 extension TrainerPageViewController: TrainerCreationView {
     func finishedMakingTrainer(_ trainer: Trainer) {
         let pokemonVC = PokemonSafariViewController(trainer)
-        pokemonVC.setupWithTrainer(trainer)
         let nav = UINavigationController(rootViewController: pokemonVC)
         present(nav, animated: true, completion: nil)
     }
