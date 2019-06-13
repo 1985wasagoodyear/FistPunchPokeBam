@@ -11,12 +11,20 @@ import Foundation
 class Pokemon: Decodable {
     let name: String
     let sprites: Sprites
-    // let types: [Type]
+    let types: [Type]
     let weight: Int
     let height: Int
     
     enum PokeKeys: String, CodingKey {
         case name, sprites, types, weight, height
+    }
+    
+    enum TypeKeys: String, CodingKey {
+        case slot, type
+    }
+    
+    enum TypeValKeys: String, CodingKey {
+        case name, url
     }
     
     required init(from decoder: Decoder) throws {
@@ -25,15 +33,27 @@ class Pokemon: Decodable {
         sprites = try container.decode(Sprites.self, forKey: .sprites)
         weight = try container.decode(Int.self, forKey: .weight)
         height = try container.decode(Int.self, forKey: .height)
-        // let typeDict = try container.decode
+        var allTypes = [Type]()
+        // decodes into arbitrary arrays
+        var arrayContainer = try container.nestedUnkeyedContainer(forKey: .types)
+        
+        // while there are still items to decode in this array
+        while !arrayContainer.isAtEnd {
+            // decode into arbitrary dictionaries
+            let typeContainer = try arrayContainer.nestedContainer(keyedBy: TypeKeys.self)
+            let type = try typeContainer.decode(Type.self, forKey: .type)
+            allTypes += [type]
+        }
+        types = allTypes
     }
 }
 
 // this will be exciting in the future
-class Type {
+class Type: Decodable {
     let type: String
-    init(_ name: String) {
-        type = name
+    
+    enum CodingKeys: String, CodingKey {
+        case type = "name"
     }
 }
 
