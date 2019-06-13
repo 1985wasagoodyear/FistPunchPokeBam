@@ -17,7 +17,8 @@ class TrainerCreationViewModel {
     }
     
     func choseTrainer(_ name: String, _ picture: Data) {
-        let trainer = Trainer(name: name, image: picture)
+        let service = CoreDataService.shared
+        let trainer = service.makeTrainer(name: name, image: picture)
         view.finishedMakingTrainer(trainer)
     }
     
