@@ -23,16 +23,13 @@ class Pokemon: Decodable {
         case slot, type
     }
     
-    enum TypeValKeys: String, CodingKey {
-        case name, url
-    }
-    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: PokeKeys.self)
         name = try container.decode(String.self, forKey: .name)
         sprites = try container.decode(Sprites.self, forKey: .sprites)
         weight = try container.decode(Int.self, forKey: .weight)
         height = try container.decode(Int.self, forKey: .height)
+        
         var allTypes = [Type]()
         // decodes into arbitrary arrays
         var arrayContainer = try container.nestedUnkeyedContainer(forKey: .types)
