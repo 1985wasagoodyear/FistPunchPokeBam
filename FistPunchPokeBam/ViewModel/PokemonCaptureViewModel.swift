@@ -32,6 +32,7 @@ class PokemonCatchViewModel {
     var count: Int {
         return safariPokemon.count
     }
+    var currentPokemon: Pokemon?
     
     var service = PokemonDownloadService()
     

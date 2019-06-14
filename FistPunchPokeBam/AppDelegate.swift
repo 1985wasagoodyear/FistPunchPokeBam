@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = window ?? UIWindow(frame: UIScreen.main.bounds)
-        
+        /*
         // is there a trainer?
         // if yes, Safari
         if let trainer = CoreDataService.shared.fetchTrainer() {
@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateViewController(withIdentifier: "TrainerPageViewController")
             window?.rootViewController = vc
         }
+         */
+        window?.rootViewController = PokemonCatchViewController()
         window?.makeKeyAndVisible()
         
         return true
