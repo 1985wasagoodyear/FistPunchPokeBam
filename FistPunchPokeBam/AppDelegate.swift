@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = vc
         }
          */
+        //asdasddas
         window?.rootViewController = PokemonCatchViewController()
         window?.makeKeyAndVisible()
         
