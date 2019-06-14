@@ -57,7 +57,7 @@ final class CoreDataService {
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -79,13 +79,48 @@ final class CoreDataService {
 
 extension CoreDataService {
     func makeTrainer(name: String, image: Data) -> Trainer {
+        // make the trainer
         let trainer = NSEntityDescription.insertNewObject(forEntityName: "Trainer",
                                                        into: mainContext) as! Trainer
+        // save the picture to the filesystem
+        // & create filename for picture for use
         let fileName = trainer.name + "_profile"
         persistentService.save(data: image, name: fileName)
+        
         trainer.name = name
         trainer.image = fileName
+        
+        // save the trainer
+        saveContext()
+        
         return trainer
+    }
+    
+    func trainerExists() -> Bool {
+        // check core data if a trainer exists
+        let trainer: NSFetchRequest<Trainer> = Trainer.fetchRequest()
+        trainer.fetchLimit = 1
+        do {
+            let results = try mainContext.fetch(trainer)
+            return !results.isEmpty
+        }
+        catch {
+            print("Error finding trainer: \(error)")
+        }
+        return false
+    }
+    func fetchTrainer() -> Trainer? {
+        // check core data if a trainer exists
+        let trainer: NSFetchRequest<Trainer> = Trainer.fetchRequest()
+        trainer.fetchLimit = 1
+        do {
+            let results = try mainContext.fetch(trainer)
+            return results.first
+        }
+        catch {
+            print("Error finding trainer: \(error)")
+        }
+        return nil
     }
 }
 

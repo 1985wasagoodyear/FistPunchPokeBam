@@ -16,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        window = window ?? UIWindow(frame: UIScreen.main.bounds)
+        
+        // is there a trainer?
+        // if yes, Safari
+        if let trainer = CoreDataService.shared.fetchTrainer() {
+            let vc = PokemonSafariViewController(trainer)
+            let rootNav = UINavigationController.init(rootViewController: vc)
+            window?.rootViewController = rootNav
+        }
+        // if no, normal flow
+        else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TrainerPageViewController")
+            window?.rootViewController = vc
+        }
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
