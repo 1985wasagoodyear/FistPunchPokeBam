@@ -32,7 +32,7 @@ class PokemonCatchViewModel {
     var count: Int {
         return safariPokemon.count
     }
-    var currentPokemon: Pokemon?
+    var currentPokemon: (index: Int, mon: Pokemon)?
     
     var service = PokemonDownloadService()
     
@@ -41,6 +41,20 @@ class PokemonCatchViewModel {
     init(_ trainer: Trainer, _ updateUI: @escaping ()->Void) {
         self.trainer = trainer
         self.updateUI = updateUI
+    }
+    
+    // MARK: - Business Logic for Capturing
+    
+    func startedCatchingPokemon(at index: Int) {
+        currentPokemon = (index: index, mon: safariPokemon[index])
+    }
+    
+    func didCaptureCurrentPokemon() {
+        let current = currentPokemon!
+        trainer.addToPokemon(current.mon)
+        safariPokemon.remove(at: current.index)
+        currentPokemon = nil
+        CoreDataService.shared.saveContext()
     }
     
     // MARK: - Interfaces for Presentation Data
@@ -54,6 +68,11 @@ class PokemonCatchViewModel {
             downloadPokemonImage(mon)
         }
         return nil
+    }
+    
+    func currentPokemonImage() -> Data {
+        let name = currentPokemon!.mon.name.ns
+        return Data(referencing: imageCache.object(forKey:name)!)
     }
     
     // MARK: - Download Tasks

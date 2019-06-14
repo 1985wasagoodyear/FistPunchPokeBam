@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DC2F3C2254082F247BED43A /* Pods_FistPunchPokeBam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */; };
 		3F35925522AEA05500678A7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35925422AEA05500678A7D /* AppDelegate.swift */; };
 		3F35925A22AEA05500678A7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F35925822AEA05500678A7D /* Main.storyboard */; };
 		3F35925C22AEA05600678A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F35925B22AEA05600678A7D /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FistPunchPokeBam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F35925122AEA05500678A7D /* FistPunchPokeBam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FistPunchPokeBam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F35925422AEA05500678A7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F35925922AEA05500678A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,8 @@
 		3FDCA65222AFF82300D65D4F /* PokemonCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCaptureViewModel.swift; sourceTree = "<group>"; };
 		3FDCA65422AFFE8100D65D4F /* ThreadingEtAl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ThreadingEtAl.md; sourceTree = "<group>"; };
 		3FDCA65522B0058500D65D4F /* PokemonFileCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFileCacheService.swift; sourceTree = "<group>"; };
+		5D0F52D3FA9645F8C8A66515 /* Pods-FistPunchPokeBam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistPunchPokeBam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam.debug.xcconfig"; sourceTree = "<group>"; };
+		BCBC7C7A129AC602A2437A72 /* Pods-FistPunchPokeBam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistPunchPokeBam.release.xcconfig"; path = "Pods/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC2F3C2254082F247BED43A /* Pods_FistPunchPokeBam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +97,8 @@
 				3FDCA65422AFFE8100D65D4F /* ThreadingEtAl.md */,
 				3F35925322AEA05500678A7D /* FistPunchPokeBam */,
 				3F35925222AEA05500678A7D /* Products */,
+				7249E2E42DEEDD4A04F1730E /* Pods */,
+				3FAC66CEFE5456A40481E4E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +201,14 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		3FAC66CEFE5456A40481E4E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3FD1026922B299CF0046EA19 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +253,15 @@
 			path = "Service Layer";
 			sourceTree = "<group>";
 		};
+		7249E2E42DEEDD4A04F1730E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D0F52D3FA9645F8C8A66515 /* Pods-FistPunchPokeBam.debug.xcconfig */,
+				BCBC7C7A129AC602A2437A72 /* Pods-FistPunchPokeBam.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,9 +269,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F35926322AEA05600678A7D /* Build configuration list for PBXNativeTarget "FistPunchPokeBam" */;
 			buildPhases = (
+				C7C63C9C51956C281B8C0EB3 /* [CP] Check Pods Manifest.lock */,
 				3F35924D22AEA05500678A7D /* Sources */,
 				3F35924E22AEA05500678A7D /* Frameworks */,
 				3F35924F22AEA05500678A7D /* Resources */,
+				AACEBC2AF2D38969BD26CA0C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,6 +330,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AACEBC2AF2D38969BD26CA0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Disintegrate/Disintegrate.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disintegrate.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7C63C9C51956C281B8C0EB3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FistPunchPokeBam-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F35924D22AEA05500678A7D /* Sources */ = {
@@ -478,6 +551,7 @@
 		};
 		3F35926422AEA05600678A7D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D0F52D3FA9645F8C8A66515 /* Pods-FistPunchPokeBam.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -495,6 +569,7 @@
 		};
 		3F35926522AEA05600678A7D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCBC7C7A129AC602A2437A72 /* Pods-FistPunchPokeBam.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
