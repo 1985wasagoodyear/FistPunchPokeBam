@@ -84,7 +84,7 @@ extension CoreDataService {
                                                        into: mainContext) as! Trainer
         // save the picture to the filesystem
         // & create filename for picture for use
-        let fileName = trainer.name + "_profile"
+        let fileName = name + "_profile"
         persistentService.save(data: image, name: fileName)
         
         trainer.name = name
@@ -122,6 +122,24 @@ extension CoreDataService {
         }
         return nil
     }
+    
+    func fetchAllTrainers() -> [Trainer] {
+        // check core data if a trainer exists
+        let trainer: NSFetchRequest<Trainer> = Trainer.fetchRequest()
+        do {
+            let results = try mainContext.fetch(trainer)
+            return results
+        }
+        catch {
+            print("Error finding trainer: \(error)")
+        }
+        return []
+    }
+    
+    func image(for trainer: Trainer) -> Data? {
+        return persistentService.load(name: trainer.image)
+    }
+    
 }
 
 // MARK: - Pokemon
