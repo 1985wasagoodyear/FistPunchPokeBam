@@ -8,25 +8,10 @@
 
 import Foundation
 
-extension Data {
-    var ns: NSData {
-        return NSData(data: self)
-    }
-}
-
-extension String {
-    var ns: NSString {
-        return NSString(string: self)
-    }
-}
-
-
 // define interface to update
 // define means of interacting with interface
 class PokemonCatchViewModel {
     var trainer: Trainer
-    
-    let imageCache = NSCache<NSString, NSData>()
     
     var safariPokemon = [Pokemon]()
     var count: Int {
@@ -61,8 +46,8 @@ class PokemonCatchViewModel {
     
     func image(at index: Int) -> Data? {
         let mon = safariPokemon[index]
-        if let nsImage = imageCache.object(forKey: mon.name.ns) {
-            return Data(referencing: nsImage)
+        if let image = service.fileCache.getImage(mon) {
+            return image
         }
         else {
             downloadPokemonImage(mon)
@@ -71,8 +56,7 @@ class PokemonCatchViewModel {
     }
     
     func currentPokemonImage() -> Data {
-        let name = currentPokemon!.mon.name.ns
-        return Data(referencing: imageCache.object(forKey:name)!)
+        return service.fileCache.getImage(currentPokemon!.mon)!
     }
     
     // MARK: - Download Tasks
@@ -130,14 +114,13 @@ class PokemonCatchViewModel {
     }
     
     func downloadPokemonImage(_ pokemon: Pokemon) {
-        if let _ = imageCache.object(forKey: pokemon.name.ns) {
+        if let _ = service.fileCache.getImage(pokemon) {
             self.updateUI()
             return
         }
         service.downloadImage(pokemon) { image in
             if let im = image {
-                self.imageCache.setObject(im.ns,
-                                          forKey: pokemon.name.ns)
+                self.service.fileCache.saveImage(pokemon, im)
                 DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
                     self.updateUI()
                 }
