@@ -4,7 +4,7 @@
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="sprites" maxCount="1" deletionRule="Nullify" destinationEntity="Sprites" inverseName="pokemon" inverseEntity="Sprites" syncable="YES"/>
+        <relationship name="sprites" maxCount="1" deletionRule="Cascade" destinationEntity="Sprites" inverseName="pokemon" inverseEntity="Sprites" syncable="YES"/>
         <relationship name="trainer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trainer" inverseName="pokemon" inverseEntity="Trainer" syncable="YES"/>
         <relationship name="types" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Type" inverseName="pokemon" inverseEntity="Type" syncable="YES"/>
     </entity>
@@ -17,21 +17,21 @@
         <attribute name="frontFemale" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="frontShiny" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="frontShinyFemale" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="pokemon" maxCount="1" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="sprites" inverseEntity="Pokemon" syncable="YES"/>
+        <relationship name="pokemon" maxCount="1" deletionRule="Deny" destinationEntity="Pokemon" inverseName="sprites" inverseEntity="Pokemon" syncable="YES"/>
     </entity>
     <entity name="Trainer" representedClassName="Trainer" syncable="YES">
         <attribute name="image" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="pokemon" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Pokemon" inverseName="trainer" inverseEntity="Pokemon" syncable="YES"/>
+        <relationship name="pokemon" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Pokemon" inverseName="trainer" inverseEntity="Pokemon" syncable="YES"/>
     </entity>
     <entity name="Type" representedClassName="Type" syncable="YES">
         <attribute name="type" attributeType="String" syncable="YES"/>
         <relationship name="pokemon" toMany="YES" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="types" inverseEntity="Pokemon" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Pokemon" positionX="-119.24609375" positionY="75.0078125" width="128" height="133"/>
+        <element name="Pokemon" positionX="-119.24609375" positionY="75.0078125" width="128" height="135"/>
+        <element name="Sprites" positionX="78.359375" positionY="-46.515625" width="128" height="180"/>
+        <element name="Trainer" positionX="-110.56640625" positionY="-53.4375" width="128" height="90"/>
         <element name="Type" positionX="78.57421875" positionY="222.1875" width="128" height="73"/>
-        <element name="Sprites" positionX="78.359375" positionY="-46.515625" width="128" height="178"/>
-        <element name="Trainer" positionX="-110.56640625" positionY="-53.4375" width="128" height="88"/>
     </elements>
 </model>

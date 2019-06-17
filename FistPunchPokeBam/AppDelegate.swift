@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let service = CoreDataService.shared
+        /*
+        let allTypes = service.getAllTypes()
+        print(allTypes.map { $0.type })
+        let allPokemon = service.getAllPokemon()
+        let allNormals = service.getAllPokemon(of: "normal")
+        */
+        var allPokemon = service.getAllPokemon()
+        print("There are \(allPokemon.count) pokemon currently saved")
+        service.removeAllWildPokemon()
+        allPokemon = service.getAllPokemon()
+        print("There are now \(allPokemon.count) pokemon currently saved")
         
         window = window ?? UIWindow(frame: UIScreen.main.bounds)
         
