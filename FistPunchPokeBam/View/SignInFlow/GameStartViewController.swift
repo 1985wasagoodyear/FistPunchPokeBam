@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// lists all options of the tableView,
+/// 'GameStartViewController' is primarily an enum-driven View
 enum GameStartOptions: Int, CaseIterable {
     case trainers = 0, newGame
     
@@ -94,11 +96,14 @@ extension GameStartViewController: UITableViewDelegate {
     func showAlert(text: String,
                    _ okAction: (()->Void)? = nil,
                    _ cancelAction: (()->Void)? = nil) {
-        let alert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        // define 'YES' action
         let okHandler: ((UIAlertAction) -> Void)? = okAction != nil ? { _ in
             okAction?() } : nil
+        // define 'NO' action
         let cancelHandler: ((UIAlertAction) -> Void)? = cancelAction != nil ? { _ in
             cancelAction?() } : nil
+        // create alert with 'YES' and 'NO' for each action
+        let alert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "YES", style: .default, handler: okHandler)
         let cancel = UIAlertAction(title: "NO", style: .default, handler: cancelHandler)
         alert.addAction(ok)
@@ -106,14 +111,15 @@ extension GameStartViewController: UITableViewDelegate {
         alert.preferredAction = ok
         self.present(alert, animated: true, completion: nil)
     }
+    
 }
 
-
-
 extension GameStartViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return GameStartOptions.allOptionsSize
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let option = GameStartOptions(rawValue: section)!
         switch option {
@@ -123,6 +129,7 @@ extension GameStartViewController: UITableViewDataSource {
             return 1
         }
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let option = GameStartOptions(rawValue: indexPath.section)!
         switch option {
@@ -133,6 +140,10 @@ extension GameStartViewController: UITableViewDataSource {
         }
     }
     
+    /// create a trainer cell for some given information
+    /// could be implemented as an in-line function
+    /// or pasted into the body of tableView:cellforRowAt:
+    /// but that's a hassel if that function grows in the future
     func trainerCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GameStartTableViewCell.cellID,
                                                  for: indexPath) as! GameStartTableViewCell
@@ -147,7 +158,6 @@ extension GameStartViewController: UITableViewDataSource {
         cell.trainerSubtitleLabel.text = "\(playerInfo.pokemonCount) Pokemon Captured!"
         return cell
     }
-    
     
 }
 
