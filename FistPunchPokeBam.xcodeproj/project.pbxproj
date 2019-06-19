@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3DC2F3C2254082F247BED43A /* Pods_FistPunchPokeBam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */; };
-		3F35925522AEA05500678A7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35925422AEA05500678A7D /* AppDelegate.swift */; };
+		3F35925522AEA05500678A7D /* PokeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35925422AEA05500678A7D /* PokeAppDelegate.swift */; };
 		3F35925A22AEA05500678A7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F35925822AEA05500678A7D /* Main.storyboard */; };
 		3F35925C22AEA05600678A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F35925B22AEA05600678A7D /* Assets.xcassets */; };
 		3F35925F22AEA05600678A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F35925D22AEA05600678A7D /* LaunchScreen.storyboard */; };
@@ -48,7 +48,7 @@
 /* Begin PBXFileReference section */
 		20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FistPunchPokeBam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F35925122AEA05500678A7D /* FistPunchPokeBam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FistPunchPokeBam.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F35925422AEA05500678A7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F35925422AEA05500678A7D /* PokeAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeAppDelegate.swift; sourceTree = "<group>"; };
 		3F35925922AEA05500678A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F35925B22AEA05600678A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F35925E22AEA05600678A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 				3F35926F22AEA0E200678A7D /* Model */,
 				3F35927022AEA0E900678A7D /* ViewModel */,
 				3F35927122AEA0F700678A7D /* View */,
-				3F35925422AEA05500678A7D /* AppDelegate.swift */,
+				3F35925422AEA05500678A7D /* PokeAppDelegate.swift */,
 				3F35925822AEA05500678A7D /* Main.storyboard */,
 				3F35925B22AEA05600678A7D /* Assets.xcassets */,
 				3F35925D22AEA05600678A7D /* LaunchScreen.storyboard */,
@@ -435,7 +435,7 @@
 				3FD1027A22B29A0F0046EA19 /* Sprites+CoreDataClass.swift in Sources */,
 				3F536FA122B7190300B1FB3B /* UIFont+Utility.swift in Sources */,
 				3FD1027F22B29E0C0046EA19 /* PersistentService.swift in Sources */,
-				3F35925522AEA05500678A7D /* AppDelegate.swift in Sources */,
+				3F35925522AEA05500678A7D /* PokeAppDelegate.swift in Sources */,
 				3FD1027422B29A0F0046EA19 /* Type+CoreDataClass.swift in Sources */,
 				3FD1027822B29A0F0046EA19 /* Pokemon+CoreDataClass.swift in Sources */,
 				3F536F9622B717B100B1FB3B /* GameStartViewController.swift in Sources */,

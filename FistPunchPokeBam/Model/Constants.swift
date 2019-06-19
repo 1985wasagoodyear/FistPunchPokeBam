@@ -11,5 +11,5 @@ import Foundation
 struct Constants {
     private init() { }
     
-    static let trainers = ["chan", "bruce", "jet"]
+    static let trainers = ["john", "bruce", "jet"]
 }

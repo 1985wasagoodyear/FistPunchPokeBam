@@ -152,7 +152,7 @@ extension GameStartViewController: UITableViewDataSource {
             cell.trainerImageView.image = UIImage(data: im)
         }
         else {
-            cell.trainerImageView.image = UIImage(named: "chan")
+            cell.trainerImageView.image = UIImage(named: "john")
         }
         cell.trainerNameLabel.text = " " + playerInfo.name
         cell.trainerSubtitleLabel.text = "\(playerInfo.pokemonCount) Pokemon Captured!"
