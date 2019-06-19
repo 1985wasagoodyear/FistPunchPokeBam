@@ -87,21 +87,28 @@ class PokemonCatchViewController: UIViewController {
     }
     //not sure why couldn't set this up like the button declarations above
     //instead had to create an instance of the UIView()
-    var spriteScene = SKScene() {
+    var spriteScene: SKScene! {
         didSet {
             spriteScene.backgroundColor = .purple
             spriteScene.size = CGSize(width: 75.0, height: 75.0)
         }
     }
     
-    var spriteView = SKView() {
+    var spriteView: SKView! {
         willSet { }
         didSet {
-            let rect = CGRect(x: 10, y: 10, width: 100, height: 100)
+            spriteScene = SKScene(size: spriteView.layer.frame.size)
             view.addSubview(spriteView)
-            spriteView = SKView(frame: rect)
             spriteView.backgroundColor = .black
             spriteView.presentScene(spriteScene)
+            spriteView.translatesAutoresizingMaskIntoConstraints = false
+            let constraints = [
+                spriteView.leadingAnchor.constraint(equalTo: pokemonImageView.leadingAnchor),
+                spriteView.trailingAnchor.constraint(equalTo: pokemonImageView.trailingAnchor),
+                spriteView.topAnchor.constraint(equalTo: pokemonImageView.topAnchor),
+                spriteView.bottomAnchor.constraint(equalTo: pokemonImageView.bottomAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         }
     }
     // MARK: - Properties
@@ -131,6 +138,9 @@ class PokemonCatchViewController: UIViewController {
         let size = CGRect(x: 0, y: 0, width: WIDTH, height: WIDTH)
         pokemonImageView = UIImageView(frame: size)
         pokeballButton = UIButton(type: .custom)
+        let spriteSize = CGRect(x: 0, y: 0, width: 100, height: 100)
+        spriteView = SKView(frame: spriteSize)
+        
         
     }
     
