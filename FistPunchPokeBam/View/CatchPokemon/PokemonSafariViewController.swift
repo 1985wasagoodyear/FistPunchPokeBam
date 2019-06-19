@@ -95,6 +95,16 @@ extension PokemonSafariViewController: UICollectionViewDataSource {
 
 }
 
+extension PokemonSafariViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.startedCatchingPokemon(at: indexPath.row)
+        let catchVC = PokemonCatchViewController(viewModel)
+        present(catchVC, animated: true, completion: nil)
+    }
+    
+}
+
 extension PokemonSafariViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,

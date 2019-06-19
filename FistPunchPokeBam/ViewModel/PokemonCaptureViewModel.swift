@@ -8,30 +8,16 @@
 
 import Foundation
 
-extension Data {
-    var ns: NSData {
-        return NSData(data: self)
-    }
-}
-
-extension String {
-    var ns: NSString {
-        return NSString(string: self)
-    }
-}
-
-
 // define interface to update
 // define means of interacting with interface
 class PokemonCatchViewModel {
     var trainer: Trainer
     
-    let imageCache = NSCache<NSString, NSData>()
-    
     var safariPokemon = [Pokemon]()
     var count: Int {
         return safariPokemon.count
     }
+    var currentPokemon: (index: Int, mon: Pokemon)?
     
     var service = PokemonDownloadService()
     
@@ -42,17 +28,35 @@ class PokemonCatchViewModel {
         self.updateUI = updateUI
     }
     
+    // MARK: - Business Logic for Capturing
+    
+    func startedCatchingPokemon(at index: Int) {
+        currentPokemon = (index: index, mon: safariPokemon[index])
+    }
+    
+    func didCaptureCurrentPokemon() {
+        let current = currentPokemon!
+        trainer.addToPokemon(current.mon)
+        safariPokemon.remove(at: current.index)
+        currentPokemon = nil
+        CoreDataService.shared.saveContext()
+    }
+    
     // MARK: - Interfaces for Presentation Data
     
     func image(at index: Int) -> Data? {
         let mon = safariPokemon[index]
-        if let nsImage = imageCache.object(forKey: mon.name.ns) {
-            return Data(referencing: nsImage)
+        if let image = service.fileCache.getImage(mon) {
+            return image
         }
         else {
             downloadPokemonImage(mon)
         }
         return nil
+    }
+    
+    func currentPokemonImage() -> Data {
+        return service.fileCache.getImage(currentPokemon!.mon)!
     }
     
     // MARK: - Download Tasks
@@ -87,14 +91,12 @@ class PokemonCatchViewModel {
         for i in 0..<count {
             let id = Int.random(in: 1...251)
             group.enter()
-            print("started download for \(i)")
             service.downloadPokemon(id) { [i] (pokemon) in
                 guard let mon = pokemon else {
                     print("failed to download \(i)")
                     group.leave()
                     return
                 }
-                print("finished download for \(i)")
                 tempPokemon.append(mon)
                 group.leave()
             }
@@ -110,14 +112,13 @@ class PokemonCatchViewModel {
     }
     
     func downloadPokemonImage(_ pokemon: Pokemon) {
-        if let _ = imageCache.object(forKey: pokemon.name.ns) {
+        if let _ = service.fileCache.getImage(pokemon) {
             self.updateUI()
             return
         }
         service.downloadImage(pokemon) { image in
             if let im = image {
-                self.imageCache.setObject(im.ns,
-                                          forKey: pokemon.name.ns)
+                self.service.fileCache.saveImage(pokemon, im)
                 DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
                     self.updateUI()
                 }

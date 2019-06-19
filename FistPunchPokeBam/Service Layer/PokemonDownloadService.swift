@@ -8,6 +8,12 @@
 
 import Foundation
 
+typealias EncoderKey = CodingUserInfoKey
+
+extension EncoderKey {
+    static let contextKey: EncoderKey = EncoderKey(rawValue: "context")!
+}
+
 enum PokeApi: String {
     case pokemon = "https://pokeapi.co/api/v2/pokemon/"
 }
@@ -81,6 +87,9 @@ class PokemonDownloadService {
     
     func deserialize(_ data: Data) -> Pokemon? {
         let decoder = JSONDecoder()
+        let context = CoreDataService.shared.mainContext
+        let key = EncoderKey.contextKey
+        decoder.userInfo = [key:context]
         do {
             let pokemon = try decoder.decode(Pokemon.self, from: data)
             return pokemon

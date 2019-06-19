@@ -13,7 +13,6 @@
         <!--Trainer Content View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="TrainerContentVC" id="BYZ-38-t0r" customClass="TrainerContentViewController" customModule="FistPunchPokeBam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -57,13 +56,14 @@
                         <outlet property="trainerSelectButton" destination="HMc-E4-Pr6" id="E65-3b-JhV"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1506" y="106"/>
         </scene>
         <!--Trainer Page View Controller-->
         <scene sceneID="pRf-Hl-y14">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="gWN-QP-PRI" customClass="TrainerPageViewController" customModule="FistPunchPokeBam" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="TrainerPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="gWN-QP-PRI" customClass="TrainerPageViewController" customModule="FistPunchPokeBam" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5t-N6-v4i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="809" y="106"/>

@@ -7,34 +7,20 @@
 //
 
 import Foundation
+import FileCache
 
+// Adapter
 class PokemonFileCacheService {
     
-    static let baseURL = FileManager.default.urls(for: .cachesDirectory,
-                                                  in: .userDomainMask).first!
+    var fileCache = FileCache()
     
     func getImage(_ pokemon: Pokemon) -> Data? {
-        let suffix = pokemon.name + "_frontDefault"
-        let url = PokemonFileCacheService.baseURL.appendingPathComponent(suffix)
-        do {
-            let data = try Data(contentsOf: url)
-            print("successfully got image from file cache")
-            return data
-        }
-        catch {
-            print("error, file not found")
-        }
-        return nil
+        let name = pokemon.name + "_frontDefault"
+        return fileCache.getImage(name)
     }
     
     func saveImage(_ pokemon: Pokemon, _ imageData: Data) {
-        let suffix = pokemon.name + "_frontDefault"
-        let url = PokemonFileCacheService.baseURL.appendingPathComponent(suffix)
-        do {
-            try imageData.write(to: url)
-        }
-        catch {
-            print("Error saving image")
-        }
+        let name = pokemon.name + "_frontDefault"
+        fileCache.saveImage(name, imageData)
     }
 }
