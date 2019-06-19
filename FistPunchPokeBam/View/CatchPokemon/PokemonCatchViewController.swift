@@ -8,6 +8,7 @@
 
 import UIKit
 import Disintegrate
+import SpriteKit
 
 let WIDTH: CGFloat = 500.0
 let WIDTH_RATIO: CGFloat = 0.66
@@ -30,14 +31,16 @@ extension UIImage {
 }
 
 class PokemonCatchViewController: UIViewController {
-    
+    // Mark: - Battle Variables
+    var chanceOfCatch = 0.0 // the chance that the player will go into the catch mode
+    let catchRate = 50.0 // when to switch to catchmode
+    let chanceModifier = 15.0 // how much should the chance of catching the pokemon increase
     // MARK: - UI Elements
-    
     var pokemonImageView: UIImageView! {
         // Property-observers
         willSet { }
         didSet {
-            pokemonImageView.image = /*.beachball*/ UIImage(data: viewModel.currentPokemonImage())
+            pokemonImageView.image = UIImage(data: viewModel.currentPokemonImage())
             pokemonImageView.contentMode = .scaleAspectFit
             
             // constraints for pokemon image
@@ -59,13 +62,17 @@ class PokemonCatchViewController: UIViewController {
             NSLayoutConstraint.activate(constraints)
         }
     }
+    
     var pokeballButton: UIButton! {
         didSet {
-            pokeballButton.setImage(.beachball, for: .normal)
-            pokeballButton.imageView?.contentMode = .scaleAspectFit
+            // set default attack button
+            // if chance increases above 50.0 then change to pokeball and allow catch mode
+            pokeballButton.setImage(nil, for: .normal)//empty image
+            pokeballButton.setTitle("Attack", for: .normal)
             pokeballButton.addTarget(self,
-                                     action: #selector(catchAction),
+                                     action: #selector(attackAction),
                                      for: .touchUpInside)
+            
             view.addSubview(pokeballButton)
             // just place pokeball
             pokeballButton.center = view.center
@@ -78,7 +85,25 @@ class PokemonCatchViewController: UIViewController {
                                           height: imageSize.height)
         }
     }
+    //not sure why couldn't set this up like the button declarations above
+    //instead had to create an instance of the UIView()
+    var spriteScene = SKScene() {
+        didSet {
+            spriteScene.backgroundColor = .purple
+            spriteScene.size = CGSize(width: 75.0, height: 75.0)
+        }
+    }
     
+    var spriteView = SKView() {
+        willSet { }
+        didSet {
+            let rect = CGRect(x: 10, y: 10, width: 100, height: 100)
+            view.addSubview(spriteView)
+            spriteView = SKView(frame: rect)
+            spriteView.backgroundColor = .black
+            spriteView.presentScene(spriteScene)
+        }
+    }
     // MARK: - Properties
     
     var viewModel: PokemonCatchViewModel!
@@ -106,6 +131,7 @@ class PokemonCatchViewController: UIViewController {
         let size = CGRect(x: 0, y: 0, width: WIDTH, height: WIDTH)
         pokemonImageView = UIImageView(frame: size)
         pokeballButton = UIButton(type: .custom)
+        
     }
     
     @objc func catchAction() {
@@ -156,6 +182,23 @@ class PokemonCatchViewController: UIViewController {
         pokemonImageView.disintegrate(direction: .random(),
                                       estimatedTrianglesCount: 100,
                                       completion: comp)
+    }
+    
+    
+    @objc func attackAction() {
+        print("attack the pokemon")
+        chanceOfCatch += chanceModifier
+        
+        if chanceOfCatch > catchRate {
+            pokeballButton.setImage(.beachball, for: .normal)
+            pokeballButton.imageView?.contentMode = .scaleAspectFit
+            //remove attack target and title
+            pokeballButton.setTitle("", for: .normal)
+            pokeballButton.removeTarget(self, action: #selector(attackAction), for: .touchUpInside)
+            pokeballButton.addTarget(self,
+                                     action: #selector(catchAction),
+                                     for: .touchUpInside)
+        }
     }
     
 }

@@ -28,7 +28,6 @@ public class Pokemon: NSManagedObject, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        
         let key = EncoderKey.contextKey
         guard let context = decoder.userInfo[key] as? NSManagedObjectContext else {
             print("could not find context")
