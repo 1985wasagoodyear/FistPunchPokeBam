@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02D2013D22B9DFB500573992 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D2013C22B9DFB500573992 /* SpriteKit.framework */; };
 		3DC2F3C2254082F247BED43A /* Pods_FistPunchPokeBam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */; };
 		3F007DA922B7E18C009D559E /* FileCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F007DA722B7E18C009D559E /* FileCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F007DAC22B7E18C009D559E /* FileCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F007DA522B7E18C009D559E /* FileCache.framework */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02D2013C22B9DFB500573992 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FistPunchPokeBam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F007DA522B7E18C009D559E /* FileCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FileCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F007DA722B7E18C009D559E /* FileCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileCache.h; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D2013D22B9DFB500573992 /* SpriteKit.framework in Frameworks */,
 				3DC2F3C2254082F247BED43A /* Pods_FistPunchPokeBam.framework in Frameworks */,
 				3F007DAC22B7E18C009D559E /* FileCache.framework in Frameworks */,
 			);
@@ -256,6 +259,7 @@
 		3FAC66CEFE5456A40481E4E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				02D2013C22B9DFB500573992 /* SpriteKit.framework */,
 				20F8F26EB2235F1F4122CCF0 /* Pods_FistPunchPokeBam.framework */,
 			);
 			name = Frameworks;
@@ -433,20 +437,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Disintegrate/Disintegrate.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disintegrate.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FistPunchPokeBam/Pods-FistPunchPokeBam-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C7C63C9C51956C281B8C0EB3 /* [CP] Check Pods Manifest.lock */ = {

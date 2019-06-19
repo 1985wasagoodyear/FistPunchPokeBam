@@ -91,14 +91,12 @@ class PokemonCatchViewModel {
         for i in 0..<count {
             let id = Int.random(in: 1...251)
             group.enter()
-            print("started download for \(i)")
             service.downloadPokemon(id) { [i] (pokemon) in
                 guard let mon = pokemon else {
                     print("failed to download \(i)")
                     group.leave()
                     return
                 }
-                print("finished download for \(i)")
                 tempPokemon.append(mon)
                 group.leave()
             }
