@@ -21,6 +21,12 @@ public class Pokemon: NSManagedObject, Decodable {
         case slot, type
     }
     
+    @objc
+    private override init(entity: NSEntityDescription,
+                          insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     required public init(from decoder: Decoder) throws {
         let key = EncoderKey.contextKey
         guard let context = decoder.userInfo[key] as? NSManagedObjectContext else {

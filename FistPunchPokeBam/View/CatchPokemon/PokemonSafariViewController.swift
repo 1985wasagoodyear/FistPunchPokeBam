@@ -86,10 +86,9 @@ extension PokemonSafariViewController: UICollectionViewDataSource {
         }
         else {
             // placeholder if no data exists
-            cell.imageView.image = UIImage(named: "chan")
+            cell.imageView.image = UIImage(named: "john")
         }
- 
-        //cell.imageView.image = UIImage(named: "chan")
+        
         return cell
     }
 

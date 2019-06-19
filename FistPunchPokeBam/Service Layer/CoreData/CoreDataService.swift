@@ -84,7 +84,7 @@ extension CoreDataService {
                                                        into: mainContext) as! Trainer
         // save the picture to the filesystem
         // & create filename for picture for use
-        let fileName = trainer.name + "_profile"
+        let fileName = name + "_profile"
         persistentService.save(data: image, name: fileName)
         
         trainer.name = name
@@ -122,11 +122,85 @@ extension CoreDataService {
         }
         return nil
     }
+    
+    func fetchAllTrainers() -> [Trainer] {
+        // check core data if a trainer exists
+        let trainer: NSFetchRequest<Trainer> = Trainer.fetchRequest()
+        do {
+            let results = try mainContext.fetch(trainer)
+            return results
+        }
+        catch {
+            print("Error finding trainer: \(error)")
+        }
+        return []
+    }
+    
+    func image(for trainer: Trainer) -> Data? {
+        return persistentService.load(name: trainer.image)
+    }
+    
 }
 
 // MARK: - Pokemon
 
 extension CoreDataService {
     
+    func removeAllWildPokemon() {
+        let pokemon: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
+        let predicate = NSPredicate(format: "trainer == nil")
+        pokemon.predicate = predicate
+        do {
+            let results = try mainContext.fetch(pokemon)
+            for mon in results {
+                mainContext.delete(mon)
+            }
+            saveContext()
+        }
+        catch {
+            print("Error finding pokemon: \(error)")
+        }
+    }
+    
+    func getAllPokemon() -> [Pokemon] {
+        let pokemon: NSFetchRequest<Pokemon> = Pokemon.fetchRequest()
+        do {
+            let results = try mainContext.fetch(pokemon)
+            return results
+        }
+        catch {
+            print("Error finding pokemon: \(error)")
+        }
+        return []
+    }
+    
+    func getAllTypes() -> [Type] {
+        let typesFetch: NSFetchRequest<Type> = Type.fetchRequest()
+        do {
+            let types = try mainContext.fetch(typesFetch)
+            return types
+        }
+        catch {
+            print("Error finding types: \(error)")
+        }
+        return []
+    }
+    
+    func getAllPokemon(of type: String) -> [Pokemon] {
+        let types: NSFetchRequest<Type> = Type.fetchRequest()
+        let predicate = NSPredicate.init(format: "type like[c] %@", type)
+        //let predicate = NSPredicate.init(format: "type like[c] \(type)")
+        types.predicate = predicate
+        do {
+            let results = try mainContext.fetch(types)
+            if let first = results.first {
+                return Array(first.pokemon) as! [Pokemon]
+            }
+        }
+        catch {
+            print("Error finding types: \(error)")
+        }
+        return []
+    }
     
 }
